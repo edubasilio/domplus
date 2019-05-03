@@ -1,6 +1,6 @@
 # History
 
-0.1.7 (2019-05-01)
+0.1.8 (2019-05-01)
 * Update to Python 3.6
 * Added invalid CPF / CNPJ list used by Brazilian Government - Serpro at [irpf-livre-src](http://www.fsfla.org/~lxoliva/fsfla/irpf-livre/2009/r6675/irpf-livre-src.tar.bz2)
 
