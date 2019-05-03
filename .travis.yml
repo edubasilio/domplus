@@ -1,0 +1,16 @@
+language: python
+python:
+- 3.6
+- 2.7
+install: pip install -U tox-travis
+script: tox
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: eabps
+  password:
+    secure: qZYkLX1dKERfFfO7C3IXPQVEFPikqBXjOyBBTWlAuth4ZWKqI6eSeoLC7NNub8h7Sy2tKdxqUoyqt09VYfDEEJ4MWH2zqQbMOVvSPZOIQ0YI4xPaKm/PpKazOoKd0JlsGA97MZ6Lse3gW/DJwk9i+IiL5Ms/GeV7BmMzoR6WXTN5pHbpqf3zLM9dTF21Zvm5WiDCkBwEadBW9IHQ6i6DZoeQMGAg4OsZRg993bHHuBsaTZEr/Yg2gRTVORVfUvh0K27jU8JYfG9i/ShG089FS2t9pYxSWj1DkDOW/gFT2/0ufbJNwE0h49ws5cQW8nEciS/RAFoyfnKHl7czOanC4qNXgvpaO7u9Mo6JYuFc9qlNw6TavITmWqSDoAzm3TeH6lqocfSG/aIifUjRFi9+mCiahpKTaZVQ9tGOzUPggWRx4BBM7HEvz73Msd9mon25JgTPbHQslFcwdIETaluZE/fwbzitcU85zrdpwXKKUENcxIYXtDrwshHeRTF+xrf5WMRUonwHJXqdNIQtLcp9aEtkmT9VWFimMVy6p2V564TY5Zrgb3IIvgTzIojUIkX2Ohy2B6cSlPj9MTHGpdpWoch7+2pBdU5lu0FZJ3kZEwpm/7x9MdldNRpFNNZFqAAbeybud0bZnh4/lIgdeG9FdVnwZwD0BKgkeMuRG1p1dYU=
+  on:
+    tags: true
+    repo: eabps/domplus
+    python: 3.6
