@@ -1,5 +1,5 @@
 # **domplus**
-[![Build Status](https://travis-ci.org/edubasilio/domplus.svg?branch=master)](https://travis-ci.org/edubasilio/domplus)
+[![Build Status](https://app.travis-ci.com/edubasilio/domplus.svg?branch=master)](https://app.travis-ci.com/edubasilio/domplus)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/domplus.svg)](https://pypi.python.org/pypi/domplus/)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/domplus.svg)](https://pypi.python.org/pypi/domplus/)
 [![PyPI status](https://img.shields.io/pypi/status/domplus.svg)](https://pypi.python.org/pypi/domplus/)
