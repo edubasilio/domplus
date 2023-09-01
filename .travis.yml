@@ -1,10 +1,16 @@
 language: python
 python:
-- 3.9
-- 3.6
-- 2.7
-install: pip install -U tox-travis
-script: tox
-env:
-  global:
-    secure: 5BxIJy/xEaQ4USDeZUlwmUvy87xLs2JASA593fPZ5u3MQFTmGiy3MiTbsO86KWny/AQH5haZjOMiVRNdwGHV5tsdqpzfADn0KpMjHqjEm17Ur/P805lWwAsIhUOkcpNBTV+R0DWBWgYZAss0HThk8/5gEuf8p9XE1JMfiSLyx8tqd0qE5ilP7dW6bD8AYz9NIwU3XUvWJTSvj188UvIMlO7yq+kdqAivhqVTFB/RMcqs9V4qmkc65qWFOcrfLuAgjA30XB8F0Ida7ANzCDZMqnEZRqWbDbdXOInMVIzhiTi/CyLC4MS969X6mViVP7ns0L9WZNi6yBQpSWSQIi9NanAwrwQcmK+T2xxQWXygwnJCD5BuUw8qCY60OQNuJ+dLKBIfapa2O/UMTuok/wlAh9mcvnMYVvixJ+JgQDZb+GEV7oWpc/kj+DHKiiTA3Ap+SsKqdhsIVQTJxsTBsFUPhVlYIcwDHaZryYoZO1t6hUf3vJFf5ZMfrG6GTQLF/0W6qU1w9CAj/YlXznSDVUH9GCH1wJCzN3V9ziDKih7DCiUQnBTHKWsVHmmXsJAcrY6DBJREfkmALUZpkRDoMzfhrFn5zGJs3OjZL4W/zzb5kFoZu8r0/wJrseA9eVzszQR68tQ08pA4uOpGpS/oKH4H946AUJCrg1GW+W+QGeSmamU=
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"      # current default Python on Travis CI
+  - "3.7"
+  - "3.8"
+  - "3.9"
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+# command to run tests
+script:
+  - pytest
+  

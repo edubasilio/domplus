@@ -31,7 +31,7 @@ _INVALID_CNPJ = (
 )
 
 
-def is_valid_br_cpf(cpf):
+def is_cpf(cpf):
     """
     Accept an string parameter cpf and
     Check if is brazilian CPF valid.
@@ -39,7 +39,10 @@ def is_valid_br_cpf(cpf):
     """
 
     # Extract dots, stroke
-    cpf = re.sub('[.|-]', '', str(cpf))
+    # cpf = re.sub('[.|-]', '', str(cpf))
+
+    if not isinstance(cpf, str):
+        raise TypeError("cpf must be string")
 
     if not re.match(r'^\d{11}$', cpf) or cpf in _INVALID_CPF:
         return False
@@ -87,7 +90,7 @@ def is_valid_br_cpf(cpf):
     return True if cpf == assemble_cpf else False
 
 
-def is_valid_br_cnpj(cnpj):
+def is_cnpj(cnpj):
     """
     Accept an string parameter cnpj and
     Check if is brazilian CNPJ valid.
@@ -95,7 +98,7 @@ def is_valid_br_cnpj(cnpj):
     """
 
     # Extract dots, stroke, slash
-    cnpj = re.sub('[.|\-/|/]', '', str(cnpj))
+    # cnpj = re.sub('[.|\-/|/]', '', str(cnpj))
 
     # if does not contain numerical characters
     if not re.match(r'^\d{14}$', cnpj) or cnpj in _INVALID_CNPJ:
@@ -147,7 +150,7 @@ def is_valid_br_cnpj(cnpj):
     return True if cnpj == assemble_cnpj else False
 
 
-def is_br_cpf_or_cnpj(cpfcnpj):
+def is_cpf_or_cnpj(cpfcnpj):
     """
     Accept an string parameter cpfcnpj;
     If is brazilian CPF valid, return 'cpf'
@@ -155,12 +158,12 @@ def is_br_cpf_or_cnpj(cpfcnpj):
     Else, return False
     """
     # Extract dots, stroke, slash
-    cpfcnpj = re.sub('[.|\-/|/]', '', str(cpfcnpj))
+    # cpfcnpj = re.sub('[.|\-/|/]', '', str(cpfcnpj))
 
 
     if len(cpfcnpj) == 11:
-        return 'cpf' if is_valid_br_cpf(cpfcnpj) else False
+        return 'cpf' if is_cpf(cpfcnpj) else False
     if len(cpfcnpj) == 14:
-        return 'cnpj' if is_valid_br_cnpj(cpfcnpj) else False
+        return 'cnpj' if is_cnpj(cpfcnpj) else False
 
     return False

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def is_valid_creditcard(card_number):
+def is_creditcard(card_number):
 	"""
 	Accept an string parameter card_number and
 	check if is a Credcard Number valid.
@@ -11,7 +11,7 @@ def is_valid_creditcard(card_number):
 
 	# if card_number is string
 	if not isinstance(card_number, str):
-		return False
+		raise TypeError("card_number must be string")
 
 	# if does not contain numerical characters
 	for i in card_number:

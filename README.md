@@ -14,70 +14,85 @@ _domplus_ is a python package with common functions for commercial applications.
 * Check if a string is a _valid_ **credit card number**
 
 ## **Install**
-``` console
+```sh
 pip install domplus
 ```
 
-## **Usage govplus**
+## **Usage domplus.gov**
 Check if a _string_ is a _valid_ **Brazilian CPF**. Return `True` or `False`
 
-``` python
-from domplus import govplus
+```python
+from domplus.gov.br import is_cpf
 
-govplus.is_valid_br_cpf("03167158590")
-# OR
-govplus.is_valid_br_cpf("031.671.585-90")
+is_cpf("03167158590")  # return True or False
 ```
 
 Check if a _string_ is a _valid_ **Brazilian CNPJ**. Return `True` or `False`
 
-``` python
-from domplus import govplus
+```python
+from domplus.gov.br import is_cnpj
 
-govplus.is_valid_br_cnpj("75317134000130")
-# OR
-govplus.is_valid_br_cnpj("75.317.134/0001-30")
+is_cnpj("75317134000130")  # return True or False
 ```
 
 Check if a _string_ is a _valid_ **Brazilian CPF** or a valid **Brazilian CNPJ**. Return `"cpf"`, `"cnpj"` or `False`
 
-``` python
-from domplus import govplus
+```python
+from domplus.gov.br import is_cpf_or_cnpj
 
-govplus.is_br_cpf_or_cnpj("03167158590")
+is_cpf_or_cnpj("03167158590")  # return 'cpf', 'cnpj' or False
 # OR
-govplus.is_br_cpf_or_cnpj("031.671.585-90")
-
-# OR
-govplus.is_br_cpf_or_cnpj("75317134000130")
-# OR
-govplus.is_br_cpf_or_cnpj("75.317.134/0001-30")
+is_cpf_or_cnpj("75317134000130")  # return 'cpf', 'cnpj' or False
 ```
 
-**Note about Brazilian CPF/CNPJ generation algorithm:** _In this software, **valid** means that the analyzed string conforms to the Brazilian CPF/CNPJ generation algorithm. This software does not make any verification in the records of the Brazilian Government. Therefore, it is possible that a valid string has not been issued by the Brazilian Government._
+**Note about Brazilian CPF/CNPJ validate algorithm:** _In this software, **valid** means that the analyzed string conforms to the Brazilian CPF/CNPJ generation algorithm. This software does not make any verification in the records of the Brazilian Government. Therefore, it is possible that a valid string has not been issued by the Brazilian Government._
 
-## **Usage financeplus**
+## **Usage domplus.finance**
 Check if a string is a _valid_ **credit card number**. Return `True` or `False`
 
-``` python
-from domplus import financeplus
+```python
+from domplus.finance import is_creditcard
 
-financeplus.is_valid_creditcard("374356783424314")
+is_creditcard("374356783424314")  # return True or False
 ```
 
-**Note about credit card generation algorithm:** _In this software, **valid** means that the analyzed string conforms to the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm "Luhn algorithm") used by the credit card administrators. This software does not make any checks on the records of the credit card administrators. Therefore, it is possible that a valid string has not been issued by the credit card administrator._
+**Note about credit card validate algorithm:** _In this software, **valid** means that the analyzed string conforms to the [Luhn algorithm](https://en.wikipedia.org/wiki/Luhn_algorithm "Luhn algorithm") used by the credit card administrators. This software does not make any checks on the records of the credit card administrators. Therefore, it is possible that a valid string has not been issued by the credit card administrator._
 
-## **Run tests**
+## For development
+### Requirements:
+* Python 3.8
+* Poetry 1.6.1
 
-Install requirements
-``` console
-pip install -r requirements_dev.txt
+### Install requirements:
+```sh
+poetry install
 ```
 
-Run
-``` console
-tox
+### Run tests
+```sh
+poetry run pytest
 ```
+
+### Commit
+Before commit, in `domplus` directory, run:
+```sh
+poetry export -f requirements.txt --output requirements.txt --with test
+```
+And add `requirements.txt` in git staged
+
+## History
+**1.0.0 (2023-09-01)**
+* domplus.govplus.is_valid_br_cpf -> domplus.gov.br.is_cpf
+* domplus.govplus.is_valid_br_cnpj -> domplus.gov.br.is_cnpj
+* domplus.govplus.is_br_cpf_or_cnpj -> domplus.gov.br.is_cpf_or_cnpj
+* domplus.financeplus.is_valid_creditcard -> domplus.finance.is_creditcard
+
+**0.1.9 (2019-05-01)**
+* Update to Python 3.6
+* Added invalid CPF / CNPJ list used by Brazilian Government - Serpro at [irpf-livre-src](http://www.fsfla.org/~lxoliva/fsfla/irpf-livre/2009/r6675/irpf-livre-src.tar.bz2)
+
+**0.1.3 (2015-04-19)**
+* First release on PyPI.
 
 ## **License**
 The MIT License (MIT)
