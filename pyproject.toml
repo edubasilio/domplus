@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "domplus"
-version = "1.0.0"
+version = "1.0.2"
 description = "domplus is a python package with common functions for commercial applications."
 authors = ["Eduardo Basílio <eduardoafonsobasilio@gmail.com>"]
 license = "MIT"

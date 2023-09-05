@@ -101,7 +101,7 @@ poetry export -f requirements.txt --output requirements.txt --with test
 And add `requirements.txt` in git staged
 
 # History
-**1.0.0 (2023-09-04)**
+**1.0.2 (2023-09-04)**
 * domplus.govplus.is_validbr_cpf -> domplus.gov.br.is_cpf
 * domplus.govplus.is_validbr_cnpj -> domplus.gov.br.is_cnpj
 * domplus.govplus.is_br_cpf_or_cnpj -> domplus.gov.br.is_cpf_or_cnpj
