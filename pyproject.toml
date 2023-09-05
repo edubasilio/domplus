@@ -5,8 +5,14 @@ description = "domplus is a python package with common functions for commercial 
 authors = ["Eduardo Basílio <eduardoafonsobasilio@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/edubasilio/domplus"
 keywords = ["validation", "cpf", "cnpj", "creditcard", "uhn-algorithm"]
+
+[tool.setuptools]
+packages = ["domplus"]
+package-dir = {"" = "domplus"}
+
+[project.urls]
+repository = "https://github.com/edubasilio/domplus"
 
 [tool.poetry.dependencies]
 python = "^3.8"

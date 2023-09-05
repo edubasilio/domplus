@@ -97,8 +97,8 @@ def is_cnpj(cnpj):
     Return True or False
     """
 
-    # Extract dots, stroke, slash
-    # cnpj = re.sub('[.|\-/|/]', '', str(cnpj))
+    if not isinstance(cnpj, str):
+        raise TypeError("cnpj must be string")
 
     # if does not contain numerical characters
     if not re.match(r'^\d{14}$', cnpj) or cnpj in _INVALID_CNPJ:
@@ -157,9 +157,9 @@ def is_cpf_or_cnpj(cpfcnpj):
     If is brazilian CNPJ valid, return 'cnpj'
     Else, return False
     """
-    # Extract dots, stroke, slash
-    # cpfcnpj = re.sub('[.|\-/|/]', '', str(cpfcnpj))
 
+    if not isinstance(cpfcnpj, str):
+        raise TypeError("cpfcnpj must be string")
 
     if len(cpfcnpj) == 11:
         return 'cpf' if is_cpf(cpfcnpj) else False
@@ -167,3 +167,82 @@ def is_cpf_or_cnpj(cpfcnpj):
         return 'cnpj' if is_cnpj(cpfcnpj) else False
 
     return False
+
+
+def is_cnh(cnh):
+    """
+    Accept an string parameter cnh;
+    If is brazilian CNH valid, return True
+    Else, return False
+    """
+    # Ref: https://github.com/scjorge/pydantic_br (2023-09-04)
+    
+    if not isinstance(cnh, str):
+        raise TypeError("cnh must be string")
+    
+    cnh = re.sub("[^0-9]", "", cnh)
+
+    if not re.match(r'^\d{11}$', cnh):
+        return False
+
+    if len(set(cnh)) == 1:
+        return False
+
+    # first_digit
+    dsc = 0
+    sum = 0
+
+    for i in range(9, 0, -1):
+        sum += int(cnh[9 - i]) * i
+
+    first_digit = sum % 11
+    if first_digit >= 10:
+        first_digit = 0
+        dsc = 2
+    first_digit = str(first_digit)
+
+    # second_digit
+    sum = 0
+
+    for i in range(1, 10):
+        sum += int(cnh[i - 1]) * i
+
+    rest = sum % 11
+
+    second_digit = rest - dsc
+    if second_digit < 0:
+        second_digit += 11
+    if second_digit >= 10:
+        second_digit = 0
+    second_digit = str(second_digit)
+
+    return cnh[9] == first_digit and cnh[10] == second_digit
+
+
+def is_renavam(renavam):
+    """
+    Accept an string parameter renavam;
+    If is brazilian RENAVAM valid, return True
+    Else, return False
+    """
+    # Ref: https://github.com/klawdyo/validation-br (2023-09-04)
+
+    if not isinstance(renavam, str):
+        raise TypeError("renavam must be string")
+    
+    if not re.match(r'^\d{11}$', renavam):
+        return False
+    
+    num = renavam[:10]
+
+    prod = 0
+    fat = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+    for i, f in enumerate(fat):
+        prod += int(num[i]) * f
+
+    dv = (prod * 10) % 11
+
+    if dv >= 10:
+        dv = 0
+    
+    return int(renavam[-1]) == dv
